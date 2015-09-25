@@ -32,7 +32,7 @@ var ValidationMixin = {
     }
     var schema = result(this, 'validatorTypes') || {};
     var data = result(this, 'getValidatorData') || this.state;
-    var validationErrors = Object.assign({}, this.state.errors, ValidationFactory.validate(schema, data, key));
+    var validationErrors = Object.assign({}, ValidationFactory.validate(schema, data, key));
     this.setState({
       errors: validationErrors
     }, this._invokeCallback.bind(this, key, callback));
