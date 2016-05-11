@@ -1,5 +1,5 @@
 var Joi = require('joi');
-var union = require('lodash.union');
+var union = require('lodash').union;
 
 var JoiValidationStrategy = {
   validate: function(joiSchema, data, key) {
