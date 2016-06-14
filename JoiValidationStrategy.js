@@ -16,7 +16,7 @@ var JoiValidationStrategy = {
       });
       return errors;
     } else {
-      var result = {};
+      var result = errors;
       result[key] = errors[key];
       return result;
     }
