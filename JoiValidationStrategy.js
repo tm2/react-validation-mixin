@@ -1,5 +1,5 @@
-var Joi = require('joi');
-var union = require('lodash').union;
+var Joi = require("joi");
+var union = require("lodash").union;
 
 var JoiValidationStrategy = {
   validate: function(joiSchema, data, key) {
@@ -7,7 +7,7 @@ var JoiValidationStrategy = {
     data = data || {};
     var joiOptions = {
       abortEarly: false,
-      allowUnknown: true,
+      allowUnknown: true
     };
     var errors = this._format(Joi.validate(data, joiSchema, joiOptions));
     if (key === undefined) {
@@ -25,17 +25,17 @@ var JoiValidationStrategy = {
   _format: function(joiResult) {
     if (joiResult.error !== null) {
       return joiResult.error.details.reduce(function(memo, detail) {
-        if (!Array.isArray(memo[detail.path])) {
-          memo[detail.path] = [];
+        const path = detail.path.join(".");
+        if (!Array.isArray(memo[path])) {
+          memo[path] = [];
         }
-        memo[detail.path].push(detail.message);
+        memo[path].push(detail.message);
         return memo;
       }, {});
     } else {
       return {};
     }
   }
-
 };
 
 module.exports = JoiValidationStrategy;
